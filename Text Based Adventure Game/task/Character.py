@@ -6,9 +6,10 @@ class Character:
         self.species = species
         self.gender = gender
         self.inventory = {
-            "snack": snack,
-            "weapon": weapon,
-            "tool": tool
+            "snack_name": snack,
+            "weapon_name": weapon,
+            "tool_name": tool,
+            "content": [snack, weapon, tool]
         }
         self.difficulty = difficulty
         self.lives = lives
@@ -17,10 +18,6 @@ class Character:
         if item_type in self.inventory:
             self.inventory[item_type] = new_item
 
-    def get_placeholders(self):
-        return {f"{{{k}}}": v for k, v in self.inventory.items()}
 
     def __str__(self):
         return f"{self.name} the {self.species} ({self.gender}) with {self.inventory}"
-
-
