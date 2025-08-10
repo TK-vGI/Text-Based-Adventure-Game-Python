@@ -1,0 +1,24 @@
+New Directory Structure:
+task/
+├── game.py          # Main entry point, handles menu and game start
+├── config.py        # Constants (e.g., COMMANDS)
+├── gameplay.py      # Core game loop and scene handling
+├── character.py     # Character class and inventory management
+├── player_setup.py  # Username and character creation
+├── save_load.py     # Save and load game functionality
+├── story.py         # Story data loading and level progression
+└── data/            # Directory for story.json and saves/
+│   ├── story.json
+│   └── saves/
+└── tests/          # unittest is Python’s built-in testing framework, suitable for project since it requires no external dependencies.
+    ├── __init__.py
+    ├── test_character.py
+    ├── test_save_load.py
+    ├── test_story.py
+    └── test_data/
+        └── test_story.json
+
+
+Running Tests:
+Run tests from the task/ directory using:
+ python -m unittest discover tests
