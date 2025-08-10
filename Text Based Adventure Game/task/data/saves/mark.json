@@ -1,0 +1,23 @@
+{
+    "character": {
+        "name": "frodo",
+        "species": "hobbit",
+        "gender": "male"
+    },
+    "inventory": {
+        "snack_name": "apple",
+        "weapon_name": "sting",
+        "tool_name": "rope",
+        "content": [
+            "apple",
+            "sting",
+            "rope"
+        ]
+    },
+    "progress": {
+        "level": "level1",
+        "scene": "scene1"
+    },
+    "lives": 1,
+    "difficulty": "hard"
+}

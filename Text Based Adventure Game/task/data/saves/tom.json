@@ -1,0 +1,23 @@
+{
+    "character": {
+        "name": "jerry",
+        "species": "mouse",
+        "gender": "male"
+    },
+    "inventory": {
+        "snack_name": "cheese",
+        "weapon_name": "needle",
+        "tool_name": "trap",
+        "content": [
+            "cheese",
+            "needle",
+            "key"
+        ]
+    },
+    "progress": {
+        "level": "level1",
+        "scene": "scene6"
+    },
+    "lives": 1,
+    "difficulty": "hard"
+}

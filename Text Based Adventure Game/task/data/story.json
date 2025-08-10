@@ -360,9 +360,23 @@
   "level3": {
     "scenes": {
       "scene1": {
-        "text": "",
-        "options": []
+        "text": "You have to make up the next story yourself ...",
+        "options": [
+          {
+            "option_text": "Ok, I will bravely attempt the quest.",
+            "result_text": "That`s the spirit, mate. I wish you a lot of luck.",
+            "actions": ["heal"],
+            "next": "end"
+          },
+          {
+            "option_text": "I have had enough.",
+            "result_text": "You decide that the path is at the end.",
+            "actions": [],
+            "next": "end"
+          }
+        ]
       }
-    }
+    },
+    "next": "story end"
   }
 }

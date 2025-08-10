@@ -1,0 +1,23 @@
+{
+    "character": {
+        "name": "tom",
+        "species": "cat",
+        "gender": "male"
+    },
+    "inventory": {
+        "snack_name": "meat",
+        "weapon_name": "claw",
+        "tool_name": "",
+        "content": [
+            "meat",
+            "claw",
+            ""
+        ]
+    },
+    "progress": {
+        "level": "level1",
+        "scene": "scene6"
+    },
+    "lives": 1,
+    "difficulty": "Hard"
+}
