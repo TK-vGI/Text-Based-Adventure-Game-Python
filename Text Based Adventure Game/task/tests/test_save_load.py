@@ -5,6 +5,7 @@ import json
 from character import Character
 from gameplay import Game
 from save_load import save_game, load_game
+from config import STORY_FILE_PATH
 
 class TestSaveLoad(unittest.TestCase):
     def setUp(self):
@@ -20,6 +21,38 @@ class TestSaveLoad(unittest.TestCase):
             lives=5
         )
         self.game = Game(username="test_user", character=self.character, game_state=["level1", "scene1"])
+        # Define test story data for mocking
+        self.test_story_data = {
+            "level1": {
+                "scenes": {
+                    "scene1": {
+                        "text": "You are at the start.",
+                        "options": [
+                            {
+                                "option_text": "Go forward",
+                                "result_text": "You move forward.",
+                                "next": "scene2",
+                                "actions": []
+                            }
+                        ]
+                    },
+                    "scene2": {
+                        "text": "You reached the end.",
+                        "options": []
+                    }
+                },
+                "next": "level2"
+            },
+            "level2": {
+                "scenes": {
+                    "scene1": {
+                        "text": "Level 2 start.",
+                        "options": []
+                    }
+                },
+                "next": None
+            }
+        }
 
     def test_save_game_success(self):
         """Test save_game writes correct JSON data."""
@@ -47,7 +80,6 @@ class TestSaveLoad(unittest.TestCase):
             with patch("os.makedirs"):
                 result = save_game(self.game)
         self.assertTrue(result)
-        # Combine all write calls and compare with expected JSON
         written_data = "".join(call[0][0] for call in mock_file().write.call_args_list)
         self.assertEqual(json.loads(written_data), expected_data)
 
@@ -86,8 +118,16 @@ class TestSaveLoad(unittest.TestCase):
             "lives": 5,
             "difficulty": "easy"
         }
+        # Mock both save file and story file
+        def open_mock(*args, **kwargs):
+            print(f"Opening file: {args[0]}")  # Debug
+            if args[0].endswith("test_user.json"):
+                return mock_open(read_data=json.dumps(save_data)).return_value
+            elif args[0] == STORY_FILE_PATH:
+                return mock_open(read_data=json.dumps(self.test_story_data)).return_value
+            raise FileNotFoundError(f"Unexpected file: {args[0]}")
         with patch("os.listdir", return_value=["test_user.json"]):
-            with patch("builtins.open", mock_open(read_data=json.dumps(save_data))):
+            with patch("builtins.open", side_effect=open_mock):
                 with patch("builtins.input", return_value="test_user"):
                     game = load_game()
         self.assertIsNotNone(game)

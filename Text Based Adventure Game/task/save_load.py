@@ -1,5 +1,6 @@
 import json
 import os
+
 from character import Character
 from config import SAVE_DIR, SAVE_FILE_EXTENSION
 
@@ -61,15 +62,15 @@ def load_game():
         if user_input == "/b":
             return None
         elif user_input in [name.lower() for name in files]:
-            filename = f"{user_input}.json"
+            filename = f"{user_input}{SAVE_FILE_EXTENSION}"
             filepath = os.path.join(SAVE_DIR, filename)
             try:
-                    with open(filepath, "r") as f:
-                        data = json.load(f)
-                    print("Loading your progress...\n")
+                with open(filepath, "r") as f:
+                    data = json.load(f)
+                print("Loading your progress...\n")
             except FileNotFoundError:
-                    print(f"Error: Save file '{filename}' not found.")
-                    return None
+                print(f"Error: Save file '{filename}' not found.")
+                return None
             except json.JSONDecodeError:
                 print(f"Error: Save file '{filename}' is corrupted.")
                 return None

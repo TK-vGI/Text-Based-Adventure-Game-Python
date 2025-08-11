@@ -1,3 +1,4 @@
+# config.py
 # Existing commands
 COMMANDS = {"/i": "Shows inventory.",
             "/q": "Exits the game.",
