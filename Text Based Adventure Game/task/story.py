@@ -1,3 +1,4 @@
+# story.py
 import json
 from config import STORY_FILE_PATH
 
@@ -15,7 +16,6 @@ class Story:
         except Exception as e:
             print(f"Error loading story file: {str(e)}")
             raise
-
         self.validate_story()
 
     def validate_story(self):
@@ -30,17 +30,14 @@ class Story:
             for key in required_level_keys:
                 if key not in level_data:
                     raise ValueError(f"Level '{level}' missing required key: {key}")
-
             if not isinstance(level_data["scenes"], dict):
                 raise ValueError(f"Level '{level}' scenes must be a dictionary.")
-
             for scene, scene_data in level_data["scenes"].items():
                 for key in required_scene_keys:
                     if key not in scene_data:
                         raise ValueError(f"Scene '{scene}' in level '{level}' missing required key: {key}")
                 if not isinstance(scene_data["options"], list):
                     raise ValueError(f"Scene '{scene}' options must be a list.")
-
                 for option in scene_data["options"]:
                     for key in required_option_keys:
                         if key not in option:
