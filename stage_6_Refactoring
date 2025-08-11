@@ -20,7 +20,7 @@ task/
 
 
 Running Tests:
-1. For testing - copy from data/saves/story_test.json to data/story.json
+1. For testing - copy from task/tests/test_data/test_story.json to data/story.json
 2. Run tests from the task/ directory using:
     python -m unittest discover tests
 3. After testing - copy from data/saves/story_bckup.json to data/story.json
